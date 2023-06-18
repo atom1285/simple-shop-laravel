@@ -1,28 +1,24 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\WebControllers\Shop\CatalogController;
+use App\Http\Controllers\WebControllers\Shop\ItemController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Home');
+});
+
+Route::group(['prefix' => 'catalog'], function () {
+   Route::get('/', [CatalogController::class, 'index']);
+   Route::get('/item/{id}', [ItemController::class, 'show']);
+});
+
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/', function () {
+        //
+    });
 });
 
 Route::get('/dashboard', function () {

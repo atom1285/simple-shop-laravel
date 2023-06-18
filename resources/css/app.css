@@ -1,3 +1,12 @@
+@import url("bootstrap-icons");
+@import "headings.pcss";
+@import "buttons.pcss";
+@import "icons.pcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: "Fira Code", monospace;
+}
